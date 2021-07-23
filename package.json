@@ -18,18 +18,23 @@
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "postinstall": "husky install",
-    "commit": "cz"
+    "commit": "cz",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
       "yarn lint --fix",
       "yarn format"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   },
   "dependencies": {
+    "moment": "2.29.1",
     "next": "11.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-markdown": "6.0.2",
+    "react-moment": "1.1.1"
   },
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
@@ -51,7 +56,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
-    "husky": "7.0.1",
+    "husky": "^7.0.0",
     "lint-staged": "11.0.1",
     "prettier": "2.3.2",
     "typescript": "4.3.5"
