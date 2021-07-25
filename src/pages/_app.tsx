@@ -2,7 +2,12 @@ import App, { AppProps, AppContext } from 'next/app';
 import Head from 'next/head';
 
 import '@/styles/global.css';
-import { createContext } from 'react';
+import { themeDark, themeLight } from '@/styles/theme';
+import React, { createContext, useEffect } from 'react';
+import {
+  ContextThemeProvider,
+  useThemeContext,
+} from '@/components/core/ThemeContext';
 import { getStrapiMedia } from '../lib/media';
 import { fetchAPI } from '../lib/api';
 
@@ -10,15 +15,22 @@ import { fetchAPI } from '../lib/api';
 export const GlobalContext = createContext({});
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const { theme, setDark } = useThemeContext();
   const { global } = pageProps;
+  const context = {
+    global,
+  };
+
   return (
     <>
       <Head>
         <link rel="shortcut icon" href={getStrapiMedia(global.favicon)} />
       </Head>
-      <GlobalContext.Provider value={global}>
-        <Component {...pageProps} />
-      </GlobalContext.Provider>
+      <ContextThemeProvider>
+        <GlobalContext.Provider value={global}>
+          <Component {...pageProps} />
+        </GlobalContext.Provider>
+      </ContextThemeProvider>
     </>
   );
 }

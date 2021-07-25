@@ -1,8 +1,14 @@
+import styled from '@emotion/styled';
 import ReactMarkdown from 'react-markdown';
 import Head from 'next/head';
 import Image from 'next/image';
 import { fetchAPI } from '@/lib/api';
+import { useThemeContext } from '@/components/core/ThemeContext';
 
+const Background = styled(`main`)`
+  color: ${(props) => props.theme.text};
+  background-color: ${(props) => props.theme.background};
+`;
 interface PropsHome {
   articles: any;
   categories: any;
@@ -10,9 +16,9 @@ interface PropsHome {
 }
 
 export default function Home({ articles, categories, homepage }: PropsHome) {
-  console.log(articles);
+  const { setDark, setLight } = useThemeContext();
   return (
-    <div>
+    <>
       <Head>
         <title>Johan Petrikovsky - Développeur Web à Toulouse</title>
         <meta
@@ -21,13 +27,19 @@ export default function Home({ articles, categories, homepage }: PropsHome) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <button type="button" onClick={setLight}>
+        set light
+      </button>
+      <button type="button" onClick={setDark}>
+        set dark
+      </button>
 
-      <main>
+      <Background>
         <ReactMarkdown>{articles[3].content}</ReactMarkdown>
-      </main>
+      </Background>
 
       <footer />
-    </div>
+    </>
   );
 }
 
