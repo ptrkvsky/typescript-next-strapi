@@ -11,7 +11,6 @@ export const GlobalContext = createContext({});
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const { global } = pageProps;
-  console.log(global);
   return (
     <>
       <Head>
