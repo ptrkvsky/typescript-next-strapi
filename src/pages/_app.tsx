@@ -1,8 +1,8 @@
 import App, { AppProps, AppContext } from 'next/app';
 import Head from 'next/head';
+import GlobalWrapper from '@/styles/Global';
 
 import '@/styles/global.css';
-import { themeDark, themeLight } from '@/styles/theme';
 import React, { createContext, useEffect } from 'react';
 import {
   ContextThemeProvider,
@@ -28,7 +28,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ContextThemeProvider>
         <GlobalContext.Provider value={global}>
-          <Component {...pageProps} />
+          <GlobalWrapper>
+            <Component {...pageProps} />
+          </GlobalWrapper>
         </GlobalContext.Provider>
       </ContextThemeProvider>
     </>

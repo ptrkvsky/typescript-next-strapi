@@ -1,9 +1,9 @@
 {
   "name": "typescript-nextjs-starter",
-  "description": "A TypeScript starter for Next.js that includes all you need to build amazing projects",
-  "version": "1.0.0",
+  "description": "NextJS + Keystone Blog",
+  "version": "0.0.1",
   "private": true,
-  "author": "João Pedro Schmitz <hey@joaopedro.dev> (@jpedroschmitz)",
+  "author": "Johan Petrikovsky (@jkovsky)",
   "license": "MIT",
   "keywords": [
     "nextjs",
@@ -17,9 +17,11 @@
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
-    "postinstall": "husky install",
+    "postinstall": "keystone-next postinstall",
     "commit": "cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
@@ -31,21 +33,32 @@
   "dependencies": {
     "@emotion/react": "11.4.0",
     "@emotion/styled": "11.3.0",
+    "@keystone-next/fields": "13.0.0",
+    "@keystone-next/fields-document": "7.0.3",
+    "@keystone-next/keystone": "23.0.0",
     "moment": "2.29.1",
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-markdown": "6.0.2",
-    "react-moment": "1.1.1"
+    "react-moment": "1.1.1",
+    "storybook-addon-styled-component-theme": "2.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.8",
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
+    "@react-theming/storybook-addon": "1.1.1",
+    "@storybook/addon-actions": "^6.3.5",
+    "@storybook/addon-essentials": "^6.3.5",
+    "@storybook/addon-links": "^6.3.5",
+    "@storybook/react": "^6.3.5",
     "@types/node": "14.17.5",
     "@types/react": "17.0.14",
     "@types/react-dom": "17.0.9",
     "@typescript-eslint/eslint-plugin": "4.28.3",
     "@typescript-eslint/parser": "4.28.3",
+    "babel-loader": "^8.2.2",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.30.0",
